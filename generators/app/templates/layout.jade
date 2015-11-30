@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    base(href='/')
+    script.
+      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':12345/livereload.js?snipver=1"></' + 'script>')
+    link(rel='stylesheet', href='angular-material/angular-material.min.css')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic')
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+    link(href='stylesheets/style.css', rel='stylesheet')
+    meta(name='viewport', content='initial-scale=1')
+    script(src='vendors/systemjs/dist/system.js')
+    script(src='vendors/angular2/bundles/angular2.dev.js')
+    script(src='vendors/angular2/bundles/router.js')
+    script.
+        System.config({
+            packages: {
+                'js': {
+                    main: 'RootComponent/RootComponent.js',
+                    format: 'cjs',
+                    defaultExtension: 'js'
+                }
+            }
+        });
+        System.import('js');
+    title derwent.io - {APPNAME}
+  body(layout="column")
+    block content

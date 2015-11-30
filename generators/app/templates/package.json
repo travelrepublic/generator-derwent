@@ -1,0 +1,37 @@
+{
+  "name": "{APPNAME}",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "postinstall": "tsd reinstall --clean && tsd link && tsd rebundle"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-livereload": "^3.8.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-tslint": "^3.6.0",
+    "gulp-typescript": "^2.8.0",
+    "gulp-watch": "^4.3.4",
+    "gulp-replace": "^0.5.4",
+    "gulp-sass": "^2.1.0",
+    "gulp-load-plugins": "^1.1.0",
+    "ts-node": "^0.5.4",
+    "typescript-register": "^1.1.0"
+  },
+  "dependencies": {
+    "angular2": "2.0.0-alpha.46",
+    "systemjs": "0.19.6",
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "jade": "~1.11.0",
+    "localforage": "^1.2.10",
+    "morgan": "~1.6.1",
+    "proxy-middleware": "^0.13.1",
+    "serve-favicon": "~2.3.0",
+    "bootstrap": "^3.3.5"
+  }
+}
