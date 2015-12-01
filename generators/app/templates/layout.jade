@@ -4,14 +4,12 @@ html
     base(href='/')
     script.
       document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':12345/livereload.js?snipver=1"></' + 'script>')
-    link(rel='stylesheet', href='angular-material/angular-material.min.css')
-    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic')
-    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
-    link(href='stylesheets/style.css', rel='stylesheet')
+    link(href='css/style.css', rel='stylesheet')
     meta(name='viewport', content='initial-scale=1')
     script(src='vendors/systemjs/dist/system.js')
     script(src='vendors/angular2/bundles/angular2.dev.js')
     script(src='vendors/angular2/bundles/router.js')
+    script(src='vendors/angular2/bundles/http.js')
     script.
         System.config({
             packages: {
@@ -23,6 +21,6 @@ html
             }
         });
         System.import('js');
-    title derwent.io - {APPNAME}
+    title derwent.io - bobo
   body(layout="column")
     block content

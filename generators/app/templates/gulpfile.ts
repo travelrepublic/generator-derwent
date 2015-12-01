@@ -10,14 +10,7 @@ var tsConfig = pl.typescript.createProject('tsconfig.json');
 
 gulp.task('default', () => {
 	pl.livereload.listen({ port: 12345 });
-	pl.watch(['app/**/*.ts', '!app/**/*.tests.ts'], { ignorePermissionErrors: true }, () => {
-		return gulp.src(['app/**/*.ts', '!app/**/*.tests.ts'])
-			.pipe(pl.sourcemaps.init())
-			.pipe(pl.typescript(tsConfig))
-			.pipe(pl.sourcemaps.write())
-			.pipe(gulp.dest('./static/js'))
-			.pipe(pl.livereload());
-	});
+	pl.watch(['app/**/*.ts', '!app/**/*.tests.ts'], { ignorePermissionErrors: true }, buildDev);
 
 	pl.watch('views/**/*.jade', { ignorePermissionErrors: true }, () => {
 		pl.livereload.reload();
@@ -36,3 +29,14 @@ gulp.task('default', () => {
 			.pipe(pl.livereload());
 	});
 });
+
+gulp.task('build.dev', buildDev);
+
+function buildDev () {
+	return gulp.src(['app/**/*.ts', '!app/**/*.tests.ts'])
+		.pipe(pl.sourcemaps.init())
+		.pipe(pl.typescript(tsConfig))
+		.pipe(pl.sourcemaps.write())
+		.pipe(gulp.dest('./static/js'))
+		.pipe(pl.livereload());
+}

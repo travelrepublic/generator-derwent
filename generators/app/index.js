@@ -67,6 +67,6 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.npmInstall();
+    this.npmInstall(undefined, undefined, () => this.spawnCommand('gulp', ['build.dev']));
   }
 });

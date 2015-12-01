@@ -30,8 +30,8 @@ app.set('view engine', 'jade');
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 //    Proxy to api:
-// app.use('/api/cms/components', proxy(url.parse(config.cmsServiceUrl)));
-	
+app.use('/api/hotels', proxy(url.parse(config.hotelsServiceUrl)));
+    
 //    Agent Authentication:
 // var agentOpt: any = url.parse(config.agentServiceUrl);
 // agentOpt.cookieRewrite = config.cookieDomain;

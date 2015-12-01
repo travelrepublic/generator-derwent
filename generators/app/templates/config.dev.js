@@ -1,5 +1,5 @@
 var config = {
-    // cmsServiceUrl : "http://pp.cms.Services.travelrepublic.local/api2/cms/components",
+    hotelsServiceUrl: "http://pp.hotelsapi2.services.travelrepublic.local/api2/hotels/",
     agentServiceUrl : "http://pp.agents.services.travelrepublic.local/api2/agents",
     cookieDomain : ".derwent.io"
 }
