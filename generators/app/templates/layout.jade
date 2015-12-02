@@ -4,7 +4,7 @@ html
     base(href='/')
     script.
       document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':12345/livereload.js?snipver=1"></' + 'script>')
-    link(href='css/style.css', rel='stylesheet')
+    link(href='css/{APPNAME}.css', rel='stylesheet')
     meta(name='viewport', content='initial-scale=1')
     script(src='vendors/systemjs/dist/system.js')
     script(src='vendors/angular2/bundles/angular2.dev.js')
@@ -21,6 +21,6 @@ html
             }
         });
         System.import('js');
-    title derwent.io - bobo
+    title derwent.io - {APPNAME}
   body(layout="column")
     block content

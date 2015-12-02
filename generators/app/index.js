@@ -43,6 +43,7 @@ module.exports = yeoman.generators.Base.extend({
     this.copy('config.prod.js', 'config.prod.js');
 
     this.copy('karma.conf.js', 'karma.conf.js');
+    this.copy('karma-shims.js', 'karma-shims.js');
     this.copy('tsconfig.json', 'tsconfig.json');
     this.copy('tsd.json', 'tsd.json');
 
@@ -67,6 +68,10 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.npmInstall(undefined, undefined, () => this.spawnCommand('gulp', ['build.dev']));
+    this.npmInstall(
+      undefined, 
+      undefined, 
+      () => this.spawnCommand('gulp', ['build.dev'])
+    );
   }
 });
