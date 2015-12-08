@@ -60,7 +60,7 @@ app.use((err: any, req: express.Request, res: express.Response, next: Function) 
     res.status(err.status || 500);
     res.render('error', {
         message: err.message,
-        error: app.get('env') === 'development' ? err : {}
+        error: app.get('env') === 'dev' ? err : {}
     })
 });
 
