@@ -1,40 +1,46 @@
 __karma__.loaded = function () {};
 
 System.config({
-	packages: {
-		'static/js': {
-			defaultExtension: 'js',
-			format: 'register', //maybe wrong
-			map: Object.keys(window.__karma__.files)
-					.filter(onlyAppFiles)
-					.reduce(mapAppFiles, {})
-		}
-	}
-})
+  baseURL: '/base/',
+  defaultJSExtensions: true,
+  paths: {
+    'angular2/*': 'node_modules/angular2/*.js',
+    '@reactivex/rxjs/*': 'node_modules/@reactivex/rxjs/*.js'
+  }
+});
 
-Promise.all(
-	Object
-		.keys(window.__karma__.files)
-		.filter(onlyTestFiles)
-		.map(function (moduleName) {
-			return System.import(moduleName);
-		})
-).then(
-	function () { __karma__.start(); },
-	function (err) { __karma__.error(err.stack || err) }
-)
-
-
-function onlyAppFiles (filePath) {
-	return filePath.indexOf('.tests.') === -1;
+function onlyTestFiles (path) {
+  return path.indexOf('.tests.') > -1;
 }
 
-function onlyTestFiles (filePath) {
-	return filePath.indexOf('.tests.') > -1;
+function karmaFileToModule (fileName) {
+  return fileName
+    .replace(/^\/base\//, '')
+    .replace('.js', '');
 }
 
-function mapAppFiles (pathsMapping, appPath) {
-	var moduleName = appPath.replace(/^static\/js\//, './');
-	pathsMapping[moduleName] = appPath + '?' + window.__karma__.files[appPath];
-	return pathsMapping;
+function importAllTests(moduleName) {
+  return System.import(moduleName)
+  .then(function (module) {
+    if (module.hasOwnProperty('main')) {
+      module.main();
+    } else {
+      throw new Error('Module ' + moduleName + ' does not implement main() method.');
+    }
+  });
 }
+
+System.import('angular2/src/core/dom/browser_adapter').then(function (browser_adapter) {
+  browser_adapter.BrowserDomAdapter.makeCurrent();
+}).then(function () {
+  return Promise.all(
+    Object.keys(window.__karma__.files)
+      .filter(onlyTestFiles)
+      .map(karmaFileToModule)
+      .map(importAllTests))
+}).then(
+  function () { window.__karma__.start(); },
+  function (error) { 
+    console.error(error.stack || error);
+    window.__karma__.start();
+  })

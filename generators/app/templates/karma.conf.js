@@ -5,45 +5,25 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: './',
 
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['jasmine'],
 
-    plugins: [
-        'karma-typescript-preprocessor',
-        'karma-mocha',
-        'karma-chai',
-        'karma-phantomjs-launcher',
-        'karma-mocha-reporter',
-        'karma-clear-screen-reporter'
+    files: [
+        { pattern: 'node_modules/systemjs/dist/system-polyfills.js', included: false, watched: false },
+        'node_modules/reflect-metadata/Reflect.js',
+        'node_modules/traceur/bin/traceur-runtime.js', 
+        'node_modules/traceur/bin/traceur.js',
+        'node_modules/systemjs/dist/system.js',
+        { pattern: 'node_modules/angular2/**/*.js', included: false, watched: false },
+        { pattern: 'node_modules/@reactivex/rxjs/dist/**/*.js', included: false, watched: false },
+        { pattern: 'app/**/*.jade', included: false, serve: true },
+        { pattern: 'static/js/**/*.js', included: false, serve: true },
+        'karma-shims.js'
     ],
-
-
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-        '**/*.ts': ['typescript']
-    },
-
-    typescriptPreprocessor: {
-        options: {
-            sourceMap: false,
-            target: 'ES5',
-            module: 'commonjs',
-        },
-        // extra typing definitions to pass to the compiler (globs allowed)
-        typings: [
-            'typings/**/*.d.ts',
-            'c_typings/**/*.d.ts'
-        ],
-        // transforming the filenames
-        transformPath: function(path) {
-            return path.replace(/\.ts$/, '.js');
-        }
-    },
 
 
     // test results reporter to use
@@ -71,7 +51,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
+    browsers: ['PhantomJS2'],
 
 
     // Continuous Integration mode
