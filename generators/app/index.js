@@ -23,7 +23,7 @@ module.exports = yeoman.generators.Base.extend({
       type: 'input',
       message: 'What is the block name?',
       name: 'app',
-      default: 'bobo'
+      default: 'derwentblock'
     }, function (answer) {
       appname = answer.app;
       done();
